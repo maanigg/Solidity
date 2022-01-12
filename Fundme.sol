@@ -20,7 +20,7 @@ contract Fundme{
 
     function fund() public payable{
 
-        uint256 minUSD = 1 * (10 ** 18);
+        uint256 minUSD = 50 * (10 ** 18);
         require(getConversionRate(msg.value) >= minUSD, "Trasaction Value should be greater than $50");
         addressToAmount[msg.sender] += msg.value;
         funders.push(msg.sender);
@@ -44,7 +44,7 @@ contract Fundme{
     }
 
     modifier Owner {
-        require(msg.sender == owner);
+        require(msg.sender == owner, "You can only withdraw funds that yourself have funded!");
         _;
     }
 
