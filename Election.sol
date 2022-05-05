@@ -8,10 +8,6 @@ contract Election {
         string name;
         uint voteCount;
     }
-    Candidate alice = Candidate(1, "Alice", 0);
-    Candidate bob = Candidate(2, "Bob", 0);
-    Candidate charlie = Candidate(3, "Charlie", 0);
-
     // Store accounts that have voted
     mapping(address => bool) public voters;
     // Store Candidates
