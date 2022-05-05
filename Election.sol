@@ -42,7 +42,7 @@ contract Election {
         
 
         // require a valid candidate
-        for(uint i = 1; i < candidatesCount ; i++){
+        for(uint i = 1; i <= candidatesCount ; i++){
             if(candidates[i].id == _candidateId){
                 candidateTrack = true;
                 currCandidate = i;
