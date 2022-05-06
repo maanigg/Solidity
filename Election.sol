@@ -3,11 +3,18 @@ pragma solidity ^0.8.2;
 
 contract Election {
     // Model a Candidate
+    address public owner;
+
+    constructor() public{
+        owner = msg.sender;
+    }
+
     struct Candidate {
         uint id;
         string name;
         uint voteCount;
     }
+
     // Store accounts that have voted
     mapping(address => bool) public voters;
     // Store Candidates
@@ -23,7 +30,12 @@ contract Election {
 
     Candidate newCandidate;
 
-    function Elections (string memory _name) public {
+    modifier Owner {
+        require(msg.sender == owner, "You dont have the facilities for that big man :(");
+        _;
+    }
+
+    function Elections (string memory _name) Owner public {
         newCandidate = Candidate(candidatesCount+1, _name, 0);
         candidatesCount += 1;
         addCandidate();
