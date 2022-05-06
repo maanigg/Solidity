@@ -73,13 +73,13 @@ contract Election {
     }
     
     //return winner ID and Name
-    function winner() public view returns(uint, string memory){
+    function winner() Owner public view returns(uint, string memory, uint){
         uint winnerTrack = 1;
         for(uint j = 1; j<=candidatesCount; j++){
             if(candidates[j].voteCount > candidates[winnerTrack].voteCount){
                 winnerTrack = j;
             }
         }
-        return (candidates[winnerTrack].id, candidates[winnerTrack].name);
+        return (candidates[winnerTrack].id, candidates[winnerTrack].name, candidates[winnerTrack].voteCount);
     }
 }
