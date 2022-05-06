@@ -71,4 +71,15 @@ contract Election {
         // trigger voted event
         emit votedEvent(_candidateId);
     }
+    
+    //return winner ID and Name
+    function winner() public view returns(uint, string memory){
+        uint winnerTrack = 1;
+        for(uint j = 1; j<=candidatesCount; j++){
+            if(candidates[j].voteCount > candidates[winnerTrack].voteCount){
+                winnerTrack = j;
+            }
+        }
+        return (candidates[winnerTrack].id, candidates[winnerTrack].name);
+    }
 }
